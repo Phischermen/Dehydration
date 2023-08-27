@@ -29,6 +29,7 @@
   "text.autoconfig.dehydration.option.water_sip_thirst_duration": "Water Sip Thirst Debuff Tick Duration",
   "text.autoconfig.dehydration.option.other_droplet_texture": "Other Droplet Texture",
   "text.autoconfig.dehydration.option.thirst_effect_factor": "Thirst Effect Factor",
+  "text.autoconfig.dehydration.option.thirst_effect_modifier": "Thirst Effect Modifier",
   "text.autoconfig.dehydration.option.flask_dirty_thirst_chance": "Flask Dirty Water Thirst Chance",
   "text.autoconfig.dehydration.option.flask_dirty_thirst_duration": "Flask Dirty Water Thirst Duration",
   "text.autoconfig.dehydration.option.water_boiling_time": "Water Boiling Time",

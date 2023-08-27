@@ -15,6 +15,9 @@ public class DehydrationConfig implements ConfigData {
     public float hydrating_factor = 1.5F;
     @Comment("Defines the rate of the thirst effect's drain, smaller variable = less draining")
     public float thirst_effect_factor = 0.05F;
+
+    @Comment("Defines the modifier added for each level of thirst")
+    public float thirst_effect_modifier = 0.01F;
     @ConfigEntry.BoundedDiscrete(min = 0, max = 20)
     public int potion_thirst_quench = 2;
     @Comment("1.0F = 100%, 0.5F = 50%, 0.0F = 0%")
