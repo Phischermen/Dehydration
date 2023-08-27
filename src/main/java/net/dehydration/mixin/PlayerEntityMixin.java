@@ -1,5 +1,6 @@
 package net.dehydration.mixin;
 
+import net.compromisedhunger.CompromisedHungerManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -34,7 +35,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ThirstMa
     }
 
     @Shadow
-    protected HungerManager hungerManager = new HungerManager();
+    protected HungerManager hungerManager;
     @Shadow
     private int sleepTimer;
 
@@ -42,6 +43,11 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ThirstMa
 
     public PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
+    }
+
+    @Inject(method = "<init>", at = @At("RETURN"))
+    private void hookInit(CallbackInfo info) {
+        hungerManager = new CompromisedHungerManager((PlayerEntity) (Object) this);
     }
 
     @Inject(method = "Lnet/minecraft/entity/player/PlayerEntity;tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/HungerManager;update(Lnet/minecraft/entity/player/PlayerEntity;)V", shift = Shift.AFTER))
