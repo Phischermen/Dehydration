@@ -6,6 +6,7 @@
   "plugin": "net.dehydration.mixin.compat.DehydrationMixinPlugin",
   "mixins": [
     "PlayerEntityMixin",
+    "ItemSettingsMixin",
     "PotionItemMixin",
     "ServerPlayerEntityMixin",
     "MilkBucketItemMixin",
