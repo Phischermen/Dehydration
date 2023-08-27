@@ -48,8 +48,25 @@ public class EventInit {
                     ThirstManager thirstManager = ((ThirstManagerAccess) player).getThirstManager();
                     if (thirstManager.isNotFull()) {
                         int drinkTime = ((PlayerAccess) player).getDrinkTime();
-                        if (world.isClient && drinkTime % 3 == 0)
+                        boolean waterIsPure = world.getFluidState(blockPos).isIn(TagInit.PURIFIED_WATER);
+                        float sipThirstChance = ConfigInit.CONFIG.water_sip_thirst_chance;
+                        if (world.getBiome(blockPos).isIn(BiomeTags.IS_RIVER)){
+                            // Rivers are totally safe to drink from.
+                            sipThirstChance = 0;
+                        } else if (world.getBiome(blockPos).isIn(BiomeTags.IS_BEACH) || world.getBiome(blockPos).isIn(BiomeTags.IS_OCEAN) || world.getBiome(blockPos).isIn(BiomeTags.IS_DEEP_OCEAN)){
+                            // Ocean water is not safe at all.
+                            sipThirstChance = 1;
+                        }
+
+                        boolean willApplyThirst = !waterIsPure && world.random.nextFloat() <= sipThirstChance;
+                        if (world.isClient && drinkTime % 3 == 0){
                             player.playSound(SoundEvents.ENTITY_GENERIC_DRINK, 0.5f, world.random.nextFloat() * 0.1f + 0.9f);
+                            if (willApplyThirst){
+                                // Play a sound that indicates the water is not pure.
+                                player.playSound(SoundEvents.ENTITY_PLAYER_BREATH, 1.0F, world.random.nextFloat() * 0.1f + 0.9f);
+                            }
+                        }
+
 
                         if (drinkTime > 20) {
                             if (!world.isClient) {
@@ -60,12 +77,8 @@ public class EventInit {
                                         world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 
                                 thirstManager.add(ConfigInit.CONFIG.water_souce_quench);
-                                if (!world.getFluidState(blockPos).isIn(TagInit.PURIFIED_WATER)) {
-                                    float sipThirstChance = ConfigInit.CONFIG.water_sip_thirst_chance;
-                                    if (world.getBiome(blockPos).isIn(BiomeTags.IS_RIVER))
-                                        sipThirstChance = sipThirstChance / 2f;
-                                    if (world.random.nextFloat() <= sipThirstChance)
-                                        player.addStatusEffect(new StatusEffectInstance(EffectInit.THIRST, ConfigInit.CONFIG.water_sip_thirst_duration, 1, false, false, true));
+                                if (willApplyThirst) {
+                                    player.addStatusEffect(new StatusEffectInstance(EffectInit.THIRST, ConfigInit.CONFIG.water_sip_thirst_duration, 1, false, false, true));
                                 }
                             } else {
                                 world.playSound(player, player.getX(), player.getY(), player.getZ(), SoundInit.WATER_SIP_EVENT, SoundCategory.PLAYERS, 1.0F, 0.9F + (world.random.nextFloat() / 5F));
