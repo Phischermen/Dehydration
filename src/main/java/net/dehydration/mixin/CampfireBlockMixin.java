@@ -3,8 +3,8 @@ package net.dehydration.mixin;
 import java.util.Optional;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
@@ -41,6 +41,23 @@ public abstract class CampfireBlockMixin extends BlockWithEntity {
             player.incrementStat(Stats.INTERACT_WITH_CAMPFIRE);
             info.setReturnValue(ActionResult.SUCCESS);
         }
+    }
+
+    // kf 8/27/2023 This is probably not the proper way to capture a reference to the world. Is there some sort of static access?
+    // who knows.
+    private static World worldRef;
+    @Inject(method = "spawnSmokeParticle", at = @At("HEAD"))
+    private static void spawnSmokeParticleMixin(World world, BlockPos pos, boolean isSignal, boolean lotsOfSmoke, CallbackInfo ci){
+        worldRef = world;
+    }
+
+    @ModifyVariable(method = "spawnSmokeParticle", at = @At("HEAD"), argsOnly = true)
+    private static BlockPos spawnSmokeParticleMixin(BlockPos pos){
+        if (worldRef == null) return pos;
+        if (worldRef.getBlockState(pos.up()).getBlock() == BlockInit.CAMPFIRE_CAULDRON_BLOCK) {
+            return pos.up(2);
+        }
+        return pos;
     }
 
     @Override
