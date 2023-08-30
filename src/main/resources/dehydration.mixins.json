@@ -7,7 +7,6 @@
   "mixins": [
     "CowEntityMixin",
     "PlayerEntityMixin",
-    "ItemSettingsMixin",
     "PotionItemMixin",
     "ServerPlayerEntityMixin",
     "MilkBucketItemMixin",

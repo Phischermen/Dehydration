@@ -2,8 +2,11 @@ package net.dehydration.mixin;
 
 import java.util.Optional;
 
+import net.minecraft.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -81,4 +84,23 @@ public class ItemMixin {
         }
     }
 
+
+    @Inject(method = "getMaxCount", at = @At("HEAD"), cancellable = true)
+    private int getMaxCount(CallbackInfoReturnable ci){
+        Item[] stackableFoods = {Items.COOKIE, Items.MELON_SLICE};
+        var item = ((Item) (Object) this);
+        if (item.isFood()){
+            boolean isStackable = false;
+            for (Item stackableFood : stackableFoods) {
+                //if (Item.getRawId(item) == Item.getRawId(stackableFood)){
+                if (item.equals(stackableFood)){
+                    isStackable = true;
+                    break;
+                }
+            }
+            //isStackable = Item.getRawId(item) ==(Items.COOKIE) || item.equals(Items.MELON);
+            ci.setReturnValue(isStackable ? 16 : 1);
+        }
+        return 0;
+    }
 }
