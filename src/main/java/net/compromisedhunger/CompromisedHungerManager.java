@@ -1,5 +1,6 @@
 package net.compromisedhunger;
 
+import net.dehydration.access.ThirstManagerAccess;
 import net.minecraft.entity.player.HungerManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -21,8 +22,11 @@ public class CompromisedHungerManager extends HungerManager {
 
     @Override
     public boolean isNotFull() {
-        // Player may now eat when health not full.
-        return super.isNotFull() || player.getHealth() < player.getMaxHealth();
+        // Player may now eat when health/thirst not full.
+        // todo Might be exploitable; players can intentionally fill their saturation by eating food while having thirst.
+        // return super.isNotFull() || player.getHealth() < player.getMaxHealth() || ((ThirstManagerAccess) player).getThirstManager().hasThirst();
+        // Player may eat / drink at all times.
+        return true;
     }
 
     @Override
