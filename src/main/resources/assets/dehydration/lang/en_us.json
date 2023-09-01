@@ -79,6 +79,7 @@
   "block.dehydration.bamboo_pump": "Bamboo Pump",
   "block.dehydration.bamboo_pump.cooldown": "Pump Cooldown: %ss",
   "block.dehydration.bamboo_pump.no_water": "Pump found no water",
+  "block.dehydration.block_of_rotten_flesh": "Block of Rotten Flesh",
 
   "commands.dehydration.changed": "thirst got changed"
 }

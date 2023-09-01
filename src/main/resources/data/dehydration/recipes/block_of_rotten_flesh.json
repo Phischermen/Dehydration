@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "RR ",
+    "RR "
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:rotten_flesh"
+    }
+  },
+  "result": {
+    "item": "dehydration:block_of_rotten_flesh",
+    "count": 1
+  }
+}
+

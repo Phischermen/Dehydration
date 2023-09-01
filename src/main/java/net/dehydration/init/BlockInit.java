@@ -30,6 +30,9 @@ public class BlockInit {
             new CopperLeveledCauldronBlock(FabricBlockSettings.copy(Blocks.CAULDRON), CopperLeveledCauldronBlock.SNOW_PREDICATE, CopperCauldronBehavior.POWDER_SNOW_COPPER_CAULDRON_BEHAVIOR));
     public static final Block COPPER_PURIFIED_WATER_CAULDRON_BLOCK = register("purified_water_copper_cauldron", false,
             new CopperLeveledCauldronBlock(FabricBlockSettings.copy(Blocks.CAULDRON), CopperLeveledCauldronBlock.RAIN_PREDICATE, CopperCauldronBehavior.PURIFIED_WATER_COPPER_CAULDRON_BEHAVIOR));
+
+    // Since rotten flesh is no longer stackable, I need something the player can convert it into that can be traded with villagers.
+    public static final Block ROTTEN_FLESH_BLOCK = register("block_of_rotten_flesh", true, new Block(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.SLIME).burnable()));
     public static final Block BAMBOO_PUMP_BLOCK = register("bamboo_pump", true,
             new BambooPumpBlock(FabricBlockSettings.create().mapColor(MapColor.DARK_GREEN).pistonBehavior(PistonBehavior.DESTROY).strength(1.2f, 4.0f).sounds(BlockSoundGroup.BAMBOO)));
     public static final Block PURIFIED_WATER = register("purified_water", false, new FluidBlock(FluidInit.PURIFIED_WATER, AbstractBlock.Settings.create().mapColor(MapColor.WATER_BLUE).noCollision()
