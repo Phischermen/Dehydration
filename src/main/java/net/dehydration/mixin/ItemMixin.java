@@ -87,18 +87,16 @@ public class ItemMixin {
 
     @Inject(method = "getMaxCount", at = @At("HEAD"), cancellable = true)
     private int getMaxCount(CallbackInfoReturnable ci){
-        Item[] stackableFoods = {Items.COOKIE, Items.MELON_SLICE};
+        Item[] stackableFoods = {Items.COOKIE, Items.MELON_SLICE, Items.SPIDER_EYE, Items.DRIED_KELP};
         var item = ((Item) (Object) this);
         if (item.isFood()){
             boolean isStackable = false;
             for (Item stackableFood : stackableFoods) {
-                //if (Item.getRawId(item) == Item.getRawId(stackableFood)){
                 if (item.equals(stackableFood)){
                     isStackable = true;
                     break;
                 }
             }
-            //isStackable = Item.getRawId(item) ==(Items.COOKIE) || item.equals(Items.MELON);
             ci.setReturnValue(isStackable ? 16 : 1);
         }
         return 0;
