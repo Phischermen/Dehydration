@@ -5,12 +5,14 @@ import net.dehydration.api.HydrationTemplate;
 import net.dehydration.init.*;
 import net.dehydration.network.ThirstServerPacket;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.metadata.ModMetadata;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.item.Items;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -36,6 +38,10 @@ public class DehydrationMain implements ModInitializer {
         TagInit.init();
         ThirstServerPacket.init();
         JsonReaderInit.init();
+
+        // Modify the compostability of rotten flesh.
+        CompostingChanceRegistry.INSTANCE.remove(Items.ROTTEN_FLESH);
+        CompostingChanceRegistry.INSTANCE.add(Items.ROTTEN_FLESH, 1F);
 
         FabricLoader.getInstance().getEntrypointContainers("dehydration", DehydrationAPI.class).forEach((entrypoint) -> {
             ModMetadata metadata = entrypoint.getProvider().getMetadata();
