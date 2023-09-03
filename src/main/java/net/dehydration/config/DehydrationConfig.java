@@ -24,7 +24,7 @@ public class DehydrationConfig implements ConfigData {
     @ConfigEntry.BoundedDiscrete(min = 0, max = 20)
     public int milk_thirst_quench = 8;
     @Comment("1.0F = 100%, 0.5F = 50%, 0.0F = 0%")
-    public float milk_thirst_chance = 0.4F;
+    public float milk_thirst_chance = 0F;
     @ConfigEntry.BoundedDiscrete(min = 0, max = 20)
     public int honey_quench = 1;
     @Comment("Applies on items added to the drinks tag")
@@ -56,9 +56,9 @@ public class DehydrationConfig implements ConfigData {
     public int water_sip_thirst_duration = 600;
     public boolean allow_non_flowing_water_sip = false;
     @ConfigEntry.BoundedDiscrete(min = 0, max = 20)
-    public int sleep_thirst_consumption = 4;
+    public int sleep_thirst_consumption = 0;
     @ConfigEntry.BoundedDiscrete(min = 0, max = 20)
-    public int sleep_hunger_consumption = 2;
+    public int sleep_hunger_consumption = 0;
     @Comment("boiling time in ticks")
     public int water_boiling_time = 100;
     @Comment("pump cooldown in ticks 0 = no cooldown")
@@ -82,5 +82,5 @@ public class DehydrationConfig implements ConfigData {
     @ConfigEntry.Category("advanced_settings")
     public int hud_y = 0;
     @ConfigEntry.Category("advanced_settings")
-    public boolean thirst_preview = true;
+    public boolean thirst_preview = false;
 }

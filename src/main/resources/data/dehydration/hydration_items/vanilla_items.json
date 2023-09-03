@@ -5,12 +5,6 @@
             "minecraft:melon_slice"
         ]
     },
-    "2": {
-        "replace": false,
-        "items": [
-            "minecraft:potion"
-        ]
-    },
     "3": {
         "replace": false,
         "items": [
@@ -28,7 +22,8 @@
     "8": {
         "replace": false,
         "items": [
-            "minecraft:milk_bucket"
+            "minecraft:milk_bucket",
+            "minecraft:potion"
         ]
     }
 }
