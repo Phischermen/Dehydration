@@ -12,6 +12,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.GameRules;
 
 public class ThirstManager {
 
@@ -35,7 +36,17 @@ public class ThirstManager {
                 this.thirstLevel = Math.max(this.thirstLevel - 1, 0);
             }
         }
-        if (this.thirstLevel <= 0) {
+
+        // Thirst regenerates health too.
+        boolean bl = player.getWorld().getGameRules().getBoolean(GameRules.NATURAL_REGENERATION);
+        if (bl && this.thirstLevel >= 18 && player.canFoodHeal()) {
+          ++this.dehydrationTimer;
+          if (this.dehydrationTimer >= 80){
+              player.heal(1.0F);
+              this.addDehydration(6.0F);
+              this.dehydrationTimer = 0;
+          }
+        } else if (this.thirstLevel <= 0) {
             ++this.dehydrationTimer;
             if (this.dehydrationTimer >= 90) {
                 if (player.getHealth() > 10.0F || difficulty == Difficulty.HARD || (player.getHealth() > 1.0F && difficulty == Difficulty.NORMAL)) {
