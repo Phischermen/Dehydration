@@ -17,17 +17,20 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.dehydration.DehydrationMain"
+      "net.dehydration.DehydrationMain",
+      "net.munchies.MunchiesMain"
     ],
     "client": [
-      "net.dehydration.DehydrationClient"
+      "net.dehydration.DehydrationClient",
+      "net.munchies.MunchiesClient"
     ],
     "modmenu": [
       "net.dehydration.config.ModMenuIntegration"
     ]
   },
   "mixins": [
-    "dehydration.mixins.json"
+    "dehydration.mixins.json",
+    "munchies.mixins.json"
   ],
   "depends": {
     "java": ">=17",
