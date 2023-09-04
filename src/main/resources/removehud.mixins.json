@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.removehud.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+
+  ],
+  "client": [
+    "RemoveHandButNotHud",
+    "RemoveHudButNotHand",
+    "RemoveBlockOutline"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

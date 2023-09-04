@@ -5,7 +5,10 @@
   "name": "Dehydration",
   "description": "Stay hydrated and keep calm",
   "authors": [
-    "Globox_Z"
+    "DeflatedPickle",
+    "Globox_Z",
+    "IzzyDotExe",
+    "Phischermen"
   ],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/dehydration",
@@ -22,15 +25,18 @@
     ],
     "client": [
       "net.dehydration.DehydrationClient",
-      "net.munchies.MunchiesClient"
+      "net.munchies.MunchiesClient",
+      "net.removehud.RemoveHud"
     ],
     "modmenu": [
-      "net.dehydration.config.ModMenuIntegration"
+      "net.dehydration.config.ModMenuIntegration",
+      "net.removehud.gui.ModMenuIntegration"
     ]
   },
   "mixins": [
     "dehydration.mixins.json",
-    "munchies.mixins.json"
+    "munchies.mixins.json",
+    "removehud.mixins.json"
   ],
   "depends": {
     "java": ">=17",
