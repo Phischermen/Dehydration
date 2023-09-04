@@ -2,6 +2,14 @@ package net.dehydration.mixin;
 
 import java.util.Optional;
 
+import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.math.random.Random;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.At;
@@ -29,6 +37,9 @@ import net.minecraft.world.World;
 
 @Mixin(CampfireBlock.class)
 public abstract class CampfireBlockMixin extends BlockWithEntity {
+    @Shadow
+    private boolean emitsParticles;
+
     public CampfireBlockMixin(Settings settings) {
         super(settings);
     }
@@ -50,5 +61,41 @@ public abstract class CampfireBlockMixin extends BlockWithEntity {
             world.breakBlock(pos.up(), !player.isCreative());
         }
     }
+    
+    @Inject(method = "spawnSmokeParticle", at = @At("HEAD"), cancellable = true)
+    private static void spawnSmokeParticleMixin(World world, BlockPos pos, boolean isSignal, boolean lotsOfSmoke, CallbackInfo ci){
+        if (copperCauldronOnTop(world, pos)) {
+            ci.cancel();
+            pos = pos.up(2);
+            Random random = world.getRandom();
+            DefaultParticleType defaultParticleType = isSignal ? ParticleTypes.CAMPFIRE_SIGNAL_SMOKE : ParticleTypes.CAMPFIRE_COSY_SMOKE;
+            world.addImportantParticle(defaultParticleType, true, (double)pos.getX() + 0.5 + random.nextDouble() / 3.0 * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5 + random.nextDouble() / 3.0 * (double)(random.nextBoolean() ? 1 : -1), 0.0, 0.07, 0.0);
+            if (lotsOfSmoke) {
+                world.addParticle(ParticleTypes.SMOKE, (double)pos.getX() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + 0.4, (double)pos.getZ() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), 0.0, 0.005, 0.0);
+            }
+        }
+    }
 
+    @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        if ((Boolean)state.get(CampfireBlock.LIT)) {
+            if (random.nextInt(10) == 0) {
+                world.playSound((double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 0.5F + random.nextFloat(), random.nextFloat() * 0.7F + 0.6F, false);
+            }
+
+            if (this.emitsParticles && random.nextInt(5) == 0) {
+                for(int i = 0; i < random.nextInt(1) + 1; ++i) {
+                    if (copperCauldronOnTop(world, pos)){
+                        world.addParticle(ParticleTypes.LAVA, (double)pos.getX() + (double)(random.nextFloat()), (double)pos.getY() + 0.5, (double)pos.getZ() + (double)(random.nextFloat()), (double)(random.nextFloat() / 2.0F), 5.0E-5, (double)(random.nextFloat() / 2.0F));
+                    } else{
+                        world.addParticle(ParticleTypes.LAVA, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, (double)(random.nextFloat() / 2.0F), 5.0E-5, (double)(random.nextFloat() / 2.0F));
+                    }
+
+                }
+            }
+
+        }
+    }
+
+    private static boolean copperCauldronOnTop(World world, BlockPos pos) { return world.getBlockState(pos.up()).getBlock() == BlockInit.CAMPFIRE_CAULDRON_BLOCK; }
 }
