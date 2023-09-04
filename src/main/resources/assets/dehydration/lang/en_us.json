@@ -25,6 +25,7 @@
   "text.autoconfig.dehydration.option.potion_bad_thirst_chance": "Bad Potion Thirst Debuff Chance",
   "text.autoconfig.dehydration.option.potion_bad_thirst_duration": "Bad Potion Thirst Debuff Tick Duration",
   "text.autoconfig.dehydration.option.milk_thirst_chance": "Milk Thirst Debuff Chance",
+  "text.autoconfig.dehydration.option.milk_ticks_max": "Re-milk Timeout",
   "text.autoconfig.dehydration.option.water_sip_thirst_chance": "Water Sip Thirst Debuff Chance",
   "text.autoconfig.dehydration.option.water_sip_thirst_duration": "Water Sip Thirst Debuff Tick Duration",
   "text.autoconfig.dehydration.option.other_droplet_texture": "Other Droplet Texture",

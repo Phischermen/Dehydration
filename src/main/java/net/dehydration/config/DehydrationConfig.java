@@ -25,6 +25,8 @@ public class DehydrationConfig implements ConfigData {
     public int milk_thirst_quench = 8;
     @Comment("1.0F = 100%, 0.5F = 50%, 0.0F = 0%")
     public float milk_thirst_chance = 0F;
+    @Comment("How many ticks you must wait before being allowed to re-milk a cow")
+    public int milk_ticks_max = 24000 / 5;
     @ConfigEntry.BoundedDiscrete(min = 0, max = 20)
     public int honey_quench = 1;
     @Comment("Applies on items added to the drinks tag")
