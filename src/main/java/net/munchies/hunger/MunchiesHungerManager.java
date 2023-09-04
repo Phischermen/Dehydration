@@ -4,6 +4,7 @@ import net.minecraft.entity.player.HungerManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
 import net.munchies.MunchiesMain;
 
 public class MunchiesHungerManager extends HungerManager {
@@ -28,6 +29,13 @@ public class MunchiesHungerManager extends HungerManager {
     public float getSaturationLevel(){
         // Disable the saturation system.
         return 0;
+    }
+
+    @Override
+    public void setFoodLevel(int foodLevel){
+        // Clamp food level to 20. This is necessary because 'isNotFull' is normally used when deciding to regen food.
+        foodLevel = Math.min(foodLevel, 20);
+        super.setFoodLevel(foodLevel);
     }
 
     @Override
