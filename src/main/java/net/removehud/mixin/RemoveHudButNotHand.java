@@ -12,6 +12,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.util.Identifier;
+import net.removehud.RemoveHud;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,6 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(InGameHud.class)
 public abstract class RemoveHudButNotHand {
+
     @Shadow protected MinecraftClient client;
 
     @Shadow protected abstract void renderVignetteOverlay(DrawContext context, Entity entity);
@@ -158,10 +160,9 @@ public abstract class RemoveHudButNotHand {
 
     private void drawHungerBar(DrawContext instance, Identifier texture, int x, int y, int u, int v, int width, int height) {
         if (ModConfig.INSTANCE.HungerBar) {
-//            if (this.client.player.getHungerManager() != null && this.client.player.getHungerManager().getFoodLevel() < 10){
-//                instance.drawTexture(texture, x + ModConfig.INSTANCE.FoodXOffset, y + ModConfig.INSTANCE.FoodYOffset, u, v, width, height);
-//            }
+            instance.setShaderColor(1f, 1f, 1f, RemoveHud.PeekAlpha);
             instance.drawTexture(texture, x + ModConfig.INSTANCE.FoodXOffset, y + ModConfig.INSTANCE.FoodYOffset, u, v, width, height);
+            instance.setShaderColor(1f, 1f, 1f, 1f);
         }
     }
 

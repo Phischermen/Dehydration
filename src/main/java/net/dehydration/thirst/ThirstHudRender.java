@@ -17,6 +17,7 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
+import net.removehud.RemoveHud;
 
 @Environment(EnvType.CLIENT)
 public class ThirstHudRender {
@@ -55,6 +56,7 @@ public class ThirstHudRender {
                     }
 
                     // Render ui droplets
+                    context.setShaderColor(1F, 1F, 1F, RemoveHud.PeekAlpha);
                     for (variable_one = 0; variable_one < 10; ++variable_one) {
                         variable_three = height;
                         if (thirstManager.dehydration >= 4.0F && ticks % (thirst * 3 + 1) == 0) {

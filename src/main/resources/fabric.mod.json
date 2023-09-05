@@ -29,8 +29,7 @@
       "net.removehud.RemoveHud"
     ],
     "modmenu": [
-      "net.dehydration.config.ModMenuIntegration",
-      "net.removehud.gui.ModMenuIntegration"
+      "net.dehydration.config.ModMenuIntegration"
     ]
   },
   "mixins": [

@@ -34,6 +34,7 @@
   "key.category.removehud": "Remove Hud but not Hand",
   "key.removehud.open_settings": "Open Mod Settings",
   "key.removehud.toggle_mod": "Toggle HUD",
+  "key.removehud.peek_hud": "Peek HUD",
   "text.autoconfig.removehud.category.OFFSETS": "HUD Offsets",
   "text.autoconfig.removehud.option.HpXOffset" : "HP bar X Offset",
   "text.autoconfig.removehud.option.HpYOffset" : "HP bar Y Offset",
