@@ -1,6 +1,6 @@
 package net.removehud.mixin;
 
-import net.removehud.ModConfig;
+import net.dehydration.init.ConfigInit;
 import net.minecraft.client.render.GameRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,7 +13,7 @@ public abstract class RemoveBlockOutline {
 
     @Inject(at=@At("TAIL"), method = "shouldRenderBlockOutline", cancellable = true)
     public void renderOutline(CallbackInfoReturnable<Boolean> cir) {
-        if (!ModConfig.INSTANCE.highlightBlocks) {
+        if (!ConfigInit.CONFIG.highlightBlocks) {
             cir.setReturnValue(false);
         } else {
             cir.setReturnValue(true);

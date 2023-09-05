@@ -2,7 +2,6 @@ package net.dehydration.thirst;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import net.removehud.ModConfig;
 import net.dehydration.access.HudAccess;
 import net.dehydration.access.ThirstManagerAccess;
 import net.dehydration.init.ConfigInit;
@@ -25,7 +24,7 @@ public class ThirstHudRender {
     // Could implement HudRenderCallback
     public static void renderThirstHud(DrawContext context, MinecraftClient client, PlayerEntity playerEntity, int scaledWidth, int scaledHeight, int ticks, int vehicleHeartCount, float flashAlpha,
             float otherFlashAlpha) {
-        if (!ModConfig.INSTANCE.ThirstBar) return; // Do not draw thirst bar.
+        if (!ConfigInit.CONFIG.ThirstBar) return; // Do not draw thirst bar.
         if (playerEntity != null && !playerEntity.isInvulnerable()) {
             ThirstManager thirstManager = ((ThirstManagerAccess) playerEntity).getThirstManager();
             if (thirstManager.hasThirst()) {

@@ -2,6 +2,7 @@ package net.removehud;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import net.dehydration.access.ThirstManagerAccess;
+import net.dehydration.init.ConfigInit;
 import net.dehydration.init.EffectInit;
 import net.dehydration.misc.ThirstTooltipData;
 import net.fabricmc.api.ClientModInitializer;
@@ -62,7 +63,7 @@ public class RemoveHud implements ClientModInitializer {
 	}
 	private void removeHudToggleListener(MinecraftClient client) {
 		while (keynmap.wasPressed()) {
-			ModConfig.INSTANCE.removeHud = !ModConfig.INSTANCE.removeHud;
+			ConfigInit.CONFIG.removeHud = !ConfigInit.CONFIG.removeHud;
 		}
 	}
 	private void peekHudRoutine(MinecraftClient client){

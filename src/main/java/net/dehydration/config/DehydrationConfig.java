@@ -76,6 +76,128 @@ public class DehydrationConfig implements ConfigData {
     @Comment("1.3 = 30% more thirst")
     public float nether_factor = 1.3F;
 
+    @ConfigEntry.Category("HUD")
+    @Comment("If false block outlines will not be visible")
+    public boolean highlightBlocks = true;
+
+    @ConfigEntry.Category("HUD")
+    @Comment("Setting will toggle all of the HUD")
+    public boolean removeHud = false;
+
+    @ConfigEntry.Category("HUD")
+    @Comment("If true the hand will be invisible")
+    public boolean removeHand = false;
+
+    @ConfigEntry.Category("HUD")
+    public boolean Autosave = true;
+
+    @ConfigEntry.Category("HUD")
+    public boolean ChatHud = true;
+
+    @ConfigEntry.Category("HUD")
+    public boolean PlayerList = true;
+
+    @ConfigEntry.Category("HUD")
+    public boolean DebugHud = true;
+
+    @ConfigEntry.Category("HUD")
+    public boolean ScoreBoard = true;
+
+    @ConfigEntry.Category("Overlays")
+    public boolean StatusEffectOverlay = true;
+
+    @ConfigEntry.Category("HUD")
+    public boolean SpectatorHud = true;
+
+    @ConfigEntry.Category("HUD")
+    public boolean SpectatorMenu = true;
+
+    @ConfigEntry.Category("HUD")
+    public boolean HeldItemTooltip = true;
+
+    @ConfigEntry.Category("HUD")
+    public boolean MountJumpbar = true;
+
+    @ConfigEntry.Category("HUD")
+    public boolean MountHealth = true;
+
+    @ConfigEntry.Category("HUD")
+    public boolean BossBar = true;
+
+    @ConfigEntry.Category("HUD")
+    @Comment("Health hearts")
+    public boolean HpBar = true;
+
+    @ConfigEntry.Category("OFFSETS")
+    @Comment("HP bar X offset")
+    public int HpXOffset = 0;
+
+    @ConfigEntry.Category("OFFSETS")
+    @Comment("HP bar Y offset")
+    public int HpYOffset = 0;
+
+    @ConfigEntry.Category("HUD")
+    @Comment("Armor points")
+    public boolean ArmorBar = true;
+
+    @ConfigEntry.Category("OFFSETS")
+    @Comment("Armor bar X offset")
+    public int ArmorXOffset = 0;
+
+    @ConfigEntry.Category("OFFSETS")
+    @Comment("Armor bar Y offset")
+    public int ArmorYOffset = 0;
+
+    @ConfigEntry.Category("HUD")
+    @Comment("Oxygen bar")
+    public boolean AirBar = true;
+
+    @ConfigEntry.Category("OFFSETS")
+    @Comment("Air bar X offset")
+    public int AirXOffset = 0;
+
+    @ConfigEntry.Category("OFFSETS")
+    @Comment("Air bar Y offset")
+    public int AirYOffset = 0;
+
+    @ConfigEntry.Category("HUD")
+    @Comment("Hunger bar")
+    public boolean HungerBar = true;
+
+    @ConfigEntry.Category("HUD")
+    @Comment("Thirst bar")
+    public boolean ThirstBar = true;
+
+    @ConfigEntry.Category("OFFSETS")
+    @Comment("Hunger bar X offset")
+    public int FoodXOffset = 0;
+
+    @ConfigEntry.Category("OFFSETS")
+    @Comment("Hunger bar Y offset")
+    public int FoodYOffset = 0;
+
+    @ConfigEntry.Category("Overlays")
+    public boolean SpyglassOverlay = true;
+
+    @ConfigEntry.Category("Overlays")
+    public boolean PortalOverlay = true;
+
+    @ConfigEntry.Category("Overlays")
+    @Comment("Frost Overlay, Pumkin head, etc...")
+    public boolean OtherOverlays = true;
+
+    @ConfigEntry.Category("Overlays")
+    public boolean Vignette = true;
+
+    @ConfigEntry.Category("HUD")
+    public boolean ExpBar = true;
+
+    @ConfigEntry.Category("HUD")
+    public boolean Crosshairs = true;
+
+    @ConfigEntry.Category("HUD")
+    public boolean HotBar = true;
+
     @ConfigEntry.Category("advanced_settings")
     @Comment("Enables alternate textures by the lead texture artist")
     public boolean other_droplet_texture = false;
